@@ -1,12 +1,12 @@
-# 🚀 GenAI
+# 🚀 GenAI -> GenAI-Document-Agent
 
 <div align="center">
 
-[![GitHub stars](https://img.shields.io/github/stars/sachinbudhamagar/GenAI?style=for-the-badge)](https://github.com/sachinbudhamagar/GenAI/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/sachinbudhamagar/GenAI-Document-Agent?style=for-the-badge)](https://github.com/sachinbudhamagar/GenAI-Document-Agent/stargazers)
 
-[![GitHub forks](https://img.shields.io/github/forks/sachinbudhamagar/GenAI?style=for-the-badge)](https://github.com/sachinbudhamagar/GenAI/network)
+[![GitHub forks](https://img.shields.io/github/forks/sachinbudhamagar/GenAI-Document-Agent?style=for-the-badge)](https://github.com/sachinbudhamagar/GenAI-Document-Agent/network)
 
-[![GitHub issues](https://img.shields.io/github/issues/sachinbudhamagar/GenAI?style=for-the-badge)](https://github.com/sachinbudhamagar/GenAI/issues)
+[![GitHub issues](https://img.shields.io/github/issues/sachinbudhamagar/GenAI-Document-Agent?style=for-the-badge)](https://github.com/sachinbudhamagar/GenAI-Document-Agent/issues)
 
 [![GitHub license](https://img.shields.io/badge/License-Unlicensed-lightgrey?style=for-the-badge)](LICENSE) <!-- TODO: Add a LICENSE file (e.g., MIT, Apache 2.0) to clarify usage rights -->
 
@@ -16,7 +16,7 @@
 
 ## 📖 Overview
 
-The `GenAI` project presents an interactive web application designed as a versatile Generative AI agent. Its core capability lies in processing and comprehending various documents, particularly PDFs like resumes and cover letters. Users can leverage this agent to engage in natural language conversations, extract information through questions, and generate customized content directly from the context of their uploaded documents. By integrating powerful Large Language Models (LLMs) from providers like OpenAI and Google, alongside advanced Retrieval Augmented Generation (RAG) techniques, `GenAI` offers a potent solution for interactive document analysis and tailored content creation.
+The `GenAI-Document-Agent` project presents an interactive web application designed as a versatile Generative AI agent. Its core capability lies in processing and comprehending various documents, particularly PDFs like resumes and cover letters. Users can leverage this agent to engage in natural language conversations, extract information through questions, and generate customized content directly from the context of their uploaded documents. By integrating powerful Large Language Models (LLMs) from providers like OpenAI and Google, alongside advanced Retrieval Augmented Generation (RAG) techniques, `GenAI-Document-Agent` offers a potent solution for interactive document analysis and tailored content creation.
 
 ## ✨ Features
 
@@ -24,17 +24,17 @@ The `GenAI` project presents an interactive web application designed as a versat
 - **Multi-LLM Integration:** Seamlessly utilize cutting-edge LLMs from both OpenAI and Google Generative AI for diverse AI capabilities.
 - **Contextual Q&A:** Ask specific questions related to your uploaded documents and receive accurate, contextually grounded answers via RAG.
 - **Personalized Content Generation:** Generate new text, summaries, or modifications based on the information and style within your documents.
-- **Intuitive Web Interface:** Interact with the GenAI agent through a user-friendly and responsive Streamlit-powered web application.
+- **Intuitive Web Interface:** Interact with the GenAI-Document-Agent agent through a user-friendly and responsive Streamlit-powered web application.
 - **Robust Vector Search:** Employs FAISS and ChromaDB for efficient storage and retrieval of document embeddings, ensuring precise information retrieval.
 - **Flexible Configuration:** Simple environment variable setup using `.env` files for managing API keys and other settings.
 
 ## 🖥️ Screenshots
 
 <!-- Example: -->
-![GenAI Chat Interface](Screenshots/image.png)
-<!-- ![GenAI Chat Interface](docs/screenshots/chat_interface.png) -->
-![GenAI Document Upload](Screenshots/image-1.png)
-<!-- ![GenAI Document Upload](docs/screenshots/document_upload.png) -->
+![GenAI-Document-Agent Chat Interface](Screenshots/image.png)
+<!-- ![GenAI-Document-Agent Chat Interface](docs/screenshots/chat_interface.png) -->
+![GenAI-Document-Agent Document Upload](Screenshots/image-1.png)
+<!-- ![GenAI-Document-Agent Document Upload](docs/screenshots/document_upload.png) -->
 
 ## 🛠️ Tech Stack
 
@@ -52,7 +52,7 @@ The `GenAI` project presents an interactive web application designed as a versat
 
 [![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com/)
 
-[![Google Generative AI](https://img.shields.io/badge/Google%20GenAI-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/)
+[![Google Generative AI](https://img.shields.io/badge/Google%20GenAI-Document-Agent-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/)
 
 [![Hugging Face Transformers](https://img.shields.io/badge/Transformers-FFD21C?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/docs/transformers/index)
 
@@ -76,7 +76,7 @@ The `GenAI` project presents an interactive web application designed as a versat
 
 ## 🚀 Quick Start
 
-Follow these steps to set up and run the GenAI agent on your local machine.
+Follow these steps to set up and run the GenAI-Document-Agent agent on your local machine.
 
 ### Prerequisites
 
@@ -88,8 +88,8 @@ Follow these steps to set up and run the GenAI agent on your local machine.
 1. **Clone the repository**
 
     ```bash
-    git clone https://github.com/sachinbudhamagar/GenAI.git
-    cd GenAI
+    git clone https://github.com/sachinbudhamagar/GenAI-Document-Agent.git
+    cd GenAI-Document-Agent
     ```
 
 2. **Install dependencies**
@@ -165,7 +165,7 @@ The primary command to run and interact with the application during development 
 
 |---------------------------|------------------------------------------------------|
 
-| `streamlit run app.py`    | Starts the Streamlit development server, hosting the GenAI agent. |
+| `streamlit run app.py`    | Starts the Streamlit development server, hosting the GenAI-Document-Agent agent. |
 
 ### Development Workflow
 
@@ -190,7 +190,7 @@ To implement and run tests:
 
 ## 🚀 Deployment
 
-Being a Streamlit application, the `GenAI` agent offers several straightforward deployment options:
+Being a Streamlit application, the `GenAI-Document-Agent` agent offers several straightforward deployment options:
 
 - **Streamlit Community Cloud:** The recommended and simplest method for deploying Streamlit applications. You can directly connect your GitHub repository for automated deployments.
 - **Docker:** Create a `Dockerfile` to containerize your application, making it portable and deployable on any Docker-compatible environment, including cloud platforms (AWS EC2, Google Cloud Run), Kubernetes, or private servers.
@@ -198,9 +198,9 @@ Being a Streamlit application, the `GenAI` agent offers several straightforward 
 
 ## 🤝 Contributing
 
-We welcome contributions to improve the `GenAI` agent! If you're interested in contributing, please consider:
+We welcome contributions to improve the `GenAI-Document-Agent` agent! If you're interested in contributing, please consider:
 
-- Reporting bugs or suggesting new features through the [GitHub Issues](https://github.com/sachinbudhamagar/GenAI/issues) page.
+- Reporting bugs or suggesting new features through the [GitHub Issues](https://github.com/sachinbudhamagar/GenAI-Document-Agent/issues) page.
 - Submitting pull requests for bug fixes, new functionalities, or documentation improvements.
 
 ### Development Setup for Contributors
@@ -224,7 +224,7 @@ A special thanks to the creators and maintainers of the following powerful tools
 
 ## 📞 Support & Contact
 
-- 🐛 Issues: For bug reports or feature requests, please use [GitHub Issues](https://github.com/sachinbudhamagar/GenAI/issues).
+- 🐛 Issues: For bug reports or feature requests, please use [GitHub Issues](https://github.com/sachinbudhamagar/GenAI-Document-Agent/issues).
 - 👨‍💻 Author: [Sachin Budhamagar](https://github.com/sachinbudhamagar)
 
 ---
