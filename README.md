@@ -31,10 +31,12 @@ The `GenAI-Document-Agent` project presents an interactive web application desig
 ## 🖥️ Screenshots
 
 <!-- Example: -->
-![GenAI-Document-Agent Chat Interface](Screenshots/image.png)
-<!-- ![GenAI-Document-Agent Chat Interface](docs/screenshots/chat_interface.png) -->
-![GenAI-Document-Agent Document Upload](Screenshots/image-1.png)
-<!-- ![GenAI-Document-Agent Document Upload](docs/screenshots/document_upload.png) -->
+![GenAI Chat Interface](Screenshots/image.png)
+![GenAI result Interface](Screenshots/result.png)
+![GenAI result Interface](Screenshots/result2.png)
+<!-- ![GenAI Chat Interface](docs/screenshots/chat_interface.png) -->
+![GenAI Document Upload](Screenshots/resumeoptimizer.png)
+<!-- ![GenAI Document Upload](docs/screenshots/document_upload.png) -->
 
 ## 🛠️ Tech Stack
 
