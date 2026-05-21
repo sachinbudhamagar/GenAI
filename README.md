@@ -234,6 +234,3 @@ A special thanks to the creators and maintainers of the following powerful tools
 **⭐ Star this repo if you find it helpful!**
 
 </div>
-=======
-# GenAI
-GenAI agent
