@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 🚀 GenAI
 
 <div align="center">
@@ -238,4 +237,3 @@ A special thanks to the creators and maintainers of the following powerful tools
 =======
 # GenAI
 GenAI agent
->>>>>>> 7e3fc71d8dce4a9e60b07bfadb2032d1d2ef948a
