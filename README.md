@@ -30,9 +30,10 @@ The `GenAI` project presents an interactive web application designed as a versat
 
 ## 🖥️ Screenshots
 
-<!-- TODO: Add actual screenshots of the Streamlit application. Show examples of document upload, chat interface, and generated responses. -->
 <!-- Example: -->
+![GenAI Chat Interface](Screenshots/image.png)
 <!-- ![GenAI Chat Interface](docs/screenshots/chat_interface.png) -->
+![GenAI Document Upload](Screenshots/image-1.png)
 <!-- ![GenAI Document Upload](docs/screenshots/document_upload.png) -->
 
 ## 🛠️ Tech Stack
