@@ -2,8 +2,6 @@
 
 <div align="center">
 
-![GenAI Document Agent Logo](https://raw.githubusercontent.com/sachinbudhamagar/GenAI-Document-Agent/main/Screenshots/document_agent_logo.png) <!-- TODO: Create and add an appropriate project logo -->
-
 [![GitHub stars](https://img.shields.io/github/stars/sachinbudhamagar/GenAI-Document-Agent?style=for-the-badge)](https://github.com/sachinbudhamagar/GenAI-Document-Agent/stargazers)
 
 [![GitHub forks](https://img.shields.io/github/forks/sachinbudhamagar/GenAI-Document-Agent?style=for-the-badge)](https://github.com/sachinbudhamagar/GenAI-Document-Agent/network)
