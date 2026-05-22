@@ -1,147 +1,111 @@
-# 🤖 GenAI Document Agent
+# 🤖 GenAI Document Agent — Django Edition
 
-An intelligent AI-powered agent for document-based Q&A, job searching, and personalised resume/cover letter generation — built with LangChain, OpenAI, and Streamlit.
-
----
-
-## ✨ Features
-
-- **Smart Job Search** — Searches multiple query variations via the Serper API and ranks results by TF-IDF cosine similarity against your resume.
-- **Resume Optimiser** — Scrapes a job posting URL and rewrites your resume to align with it using GPT-4o-mini.
-- **Cover Letter Generator** — Produces a tailored cover letter and highlights missing keywords.
-- **PDF Export** — Download optimised documents as properly formatted PDFs.
-- **Configurable** — All behaviour tunable via environment variables; no hard-coded magic.
+AI-powered job search and resume optimiser. Originally built with Streamlit;
+UI layer replaced with **Django** for a proper request/response web architecture.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
-genai-document-agent/
-├── app.py                      # Streamlit entry point (thin launcher)
-├── src/
-│   ├── config.py               # Centralised settings (env vars → dataclass)
+GenAI-Document-Agent/
+├── manage.py                    # Django entry point
+├── core/                        # Django project config
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── web/                         # Django app (views, templates, static)
+│   ├── views.py
+│   ├── urls.py
+│   ├── templates/web/
+│   │   ├── base.html
+│   │   ├── index.html
+│   │   ├── job_search.html
+│   │   └── resume_optimizer.html
+│   └── static/web/
+│       ├── css/main.css
+│       └── js/main.js
+├── src/                         # Business logic (unchanged)
+│   ├── config.py
 │   ├── services/
-│   │   ├── llm.py              # Lazy-init ChatOpenAI singleton
-│   │   ├── job_search.py       # Serper API job search
-│   │   ├── job_scorer.py       # TF-IDF cosine similarity ranking
-│   │   ├── job_scraper.py      # HTML job-description scraper
-│   │   └── resume_generator.py # LLM resume + cover letter generation
-│   ├── utils/
-│   │   ├── text.py             # clean_markdown, is_valid_url
-│   │   ├── pdf.py              # PDF read/write helpers
-│   │   └── decorators.py       # retry_request decorator
-│   └── ui/
-│       ├── main.py             # Page config + tab layout
-│       ├── tab_job_search.py   # Job Search tab
-│       └── tab_resume_optimizer.py  # Resume Optimizer tab
+│   │   ├── job_search.py
+│   │   ├── job_scorer.py
+│   │   ├── job_scraper.py
+│   │   ├── llm.py
+│   │   └── resume_generator.py
+│   └── utils/
+│       ├── pdf.py
+│       ├── text.py
+│       └── decorators.py
 ├── tests/
-│   ├── test_utils_text.py
-│   └── test_job_scorer.py
-├── samples/                    # Example PDF documents for testing
-├── docs/                       # Screenshots and additional docs
-├── .env.example                # Environment variable template
 ├── requirements.txt
-├── requirements-dev.txt
-├── Makefile                    # Common dev commands
-└── pyproject.toml              # Tool configuration (ruff, black, mypy, pytest)
+└── Makefile
 ```
 
 ---
 
-## 🚀 Quick Start
-
-### Prerequisites
-
-- Python 3.8+
-- An [OpenAI API key](https://platform.openai.com/api-keys)
-- A [Serper API key](https://serper.dev) (free tier available)
-
-### Installation
+## Quick Start
 
 ```bash
-git clone https://github.com/sachinbudhamagar/GenAI-Document-Agent.git
-cd GenAI-Document-Agent
+# 1. Clone & create venv
+python -m venv venv && source venv/bin/activate
 
-python -m venv venv
-source venv/bin/activate      # Windows: venv\Scripts\activate
-
+# 2. Install dependencies
 pip install -r requirements.txt
 
+# 3. Configure env
 cp .env.example .env
-# Edit .env and add your API keys
+# Edit .env — add OPENAI_API_KEY and SERPER_API_KEY
 
-streamlit run app.py
+# 4. Run migrations (sets up file-based sessions — no database needed)
+python manage.py migrate --run-syncdb
+
+# 5. Start the server
+python manage.py runserver
+
+# Open http://localhost:8000
 ```
 
-Open your browser at `http://localhost:8501`.
+Or with `make`:
+```bash
+make install
+make migrate
+make run
+```
 
 ---
 
-## ⚙️ Configuration
+## Pages
 
-All settings are controlled via environment variables (see `.env.example`):
+| URL | Description |
+|-----|-------------|
+| `/` | Landing page |
+| `/job-search/` | Upload resume + query → ranked job list |
+| `/resume-optimizer/` | Paste job URL + resume → tailored resume & cover letter PDF |
+| `/download/resume/` | Download optimized resume PDF |
+| `/download/cover/` | Download cover letter PDF |
+
+---
+
+## Why Django instead of Streamlit?
+
+| Concern | Streamlit | Django |
+|---------|-----------|--------|
+| Multiple users | Shared session state issues | Proper per-request isolation |
+| URL routing | Single-page only | Full URL structure |
+| HTML control | Limited widget API | Full template control |
+| Deployment | Streamlit Cloud / manual | Any WSGI host (Heroku, Railway, VPS) |
+| Testability | Hard to unit-test UI | Views are plain Python functions |
+
+---
+
+## Environment Variables
 
 | Variable | Default | Description |
 |---|---|---|
-| `OPENAI_API_KEY` | — | OpenAI API key (**required**) |
-| `SERPER_API_KEY` | — | Serper search API key (**required**) |
-| `LLM_MODEL` | `gpt-4o-mini` | OpenAI model name |
-| `LLM_TEMPERATURE` | `0.3` | LLM sampling temperature |
-| `MAX_RETRY_ATTEMPTS` | `3` | HTTP retry attempts |
-| `RETRY_DELAY_SECONDS` | `2.0` | Delay between retries |
-| `TOP_JOBS_COUNT` | `10` | Number of top-ranked jobs to surface |
-| `MAX_JOBS_TO_SCORE` | `30` | Max jobs fed to the scorer |
-
----
-
-## 🧪 Development
-
-```bash
-# Install dev dependencies
-make dev
-
-# Run tests
-make test
-
-# Run with coverage report
-make test-cov
-
-# Lint
-make lint
-
-# Auto-format
-make format
-
-# Type-check
-make typecheck
-```
-
----
-
-## 🚢 Deployment
-
-- **Streamlit Community Cloud** — Connect your GitHub repo for one-click deployment.
-- **Docker** — Add a `Dockerfile` based on `python:3.11-slim`, `COPY` the project, `RUN pip install -r requirements.txt`, `CMD streamlit run app.py`.
-- **VPS** — Run behind `nginx` + `gunicorn` with a systemd service.
-
----
-
-## 🤝 Contributing
-
-1. Fork the repo and create a feature branch.
-2. Write tests for new logic.
-3. Run `make lint && make test` before opening a PR.
-4. Follow existing code style (Black + Ruff).
-
----
-
-## 📄 License
-
-MIT — see `LICENSE`.
-
----
-
-## 🙏 Acknowledgements
-
-LangChain · Streamlit · OpenAI · Serper · FAISS · ChromaDB · HuggingFace · ReportLab
+| `OPENAI_API_KEY` | — | Required |
+| `SERPER_API_KEY` | — | Required |
+| `LLM_MODEL` | `gpt-4o-mini` | OpenAI model |
+| `DJANGO_SECRET_KEY` | insecure default | Set in production |
+| `DJANGO_DEBUG` | `True` | Set to `False` in production |
+| `DJANGO_ALLOWED_HOSTS` | `localhost 127.0.0.1` | Space-separated |

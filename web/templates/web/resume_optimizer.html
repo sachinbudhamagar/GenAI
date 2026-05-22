@@ -1,0 +1,87 @@
+{% extends "web/base.html" %}
+{% block title %}Resume Optimizer — AI Job Agent{% endblock %}
+{% block nav_optimizer %}active{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>📄 Resume Optimizer</h1>
+  <p>Paste a job posting URL and upload your resume — get an AI-tailored resume &amp; cover letter in seconds.</p>
+</div>
+
+<!-- ── Form ─────────────────────────────────────────────────────────── -->
+<form method="post" enctype="multipart/form-data" class="card form-card" id="optimizerForm">
+  {% csrf_token %}
+
+  <div class="form-group">
+    <label for="resume">Resume (PDF)</label>
+    <input type="file" id="resume" name="resume" accept=".pdf" required>
+  </div>
+
+  <div class="form-group">
+    <label for="job_url">Job Posting URL</label>
+    <input type="url" id="job_url" name="job_url"
+           placeholder="https://www.linkedin.com/jobs/view/…"
+           value="{{ job_url|default:'' }}" required>
+  </div>
+
+  <button type="submit" class="btn btn-primary" id="optimizeBtn">
+    <span class="btn-text">⚡ Generate Optimized Resume &amp; Cover Letter</span>
+    <span class="btn-loading hidden">⏳ Generating… (this may take 20–30 s)</span>
+  </button>
+</form>
+
+<!-- ── Errors ───────────────────────────────────────────────────────── -->
+{% if errors %}
+<div class="alert alert-error">
+  {% for err in errors %}<p>⚠️ {{ err }}</p>{% endfor %}
+</div>
+{% endif %}
+
+<!-- ── Results ──────────────────────────────────────────────────────── -->
+{% if show_results %}
+<section class="results">
+
+  <!-- Metrics row -->
+  <div class="metrics-row">
+    <div class="metric-card metric-blue">
+      <div class="metric-label">JD Match</div>
+      <div class="metric-value">{{ jd_match }}</div>
+    </div>
+    <div class="metric-card metric-teal">
+      <div class="metric-label">Missing Keywords</div>
+      <div class="metric-value metric-keywords">
+        {% if missing_keywords %}
+          {% for kw in missing_keywords %}
+            <span class="keyword-chip">{{ kw }}</span>
+          {% endfor %}
+        {% else %}
+          <span class="none-label">None detected ✓</span>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Download buttons -->
+  <div class="download-row">
+    <a href="{% url 'download_pdf' 'resume' %}" class="btn btn-primary">
+      ⬇️ Download Optimized Resume (PDF)
+    </a>
+    <a href="{% url 'download_pdf' 'cover' %}" class="btn btn-secondary">
+      ⬇️ Download Cover Letter (PDF)
+    </a>
+  </div>
+
+  <!-- Expandable previews -->
+  <details class="preview-section">
+    <summary>📄 Preview Optimized Resume</summary>
+    <pre class="preview-text">{{ optimized_resume }}</pre>
+  </details>
+
+  <details class="preview-section">
+    <summary>✉️ Preview Cover Letter</summary>
+    <pre class="preview-text">{{ cover_letter }}</pre>
+  </details>
+
+</section>
+{% endif %}
+{% endblock %}

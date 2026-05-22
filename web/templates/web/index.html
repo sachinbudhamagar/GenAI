@@ -1,0 +1,26 @@
+{% extends "web/base.html" %}
+{% block title %}AI Job Agent — Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>🤖 AI Job Agent</h1>
+  <p class="hero-sub">Your intelligent career companion — powered by LangChain &amp; GPT-4o-mini</p>
+  <div class="hero-cards">
+
+    <a href="{% url 'job_search' %}" class="card card-blue">
+      <div class="card-icon">🔍</div>
+      <h2>Job Search</h2>
+      <p>Upload your resume, enter a query, and get AI-ranked job matches based on how well each posting fits your skills.</p>
+      <span class="btn-outline">Start searching →</span>
+    </a>
+
+    <a href="{% url 'resume_optimizer' %}" class="card card-teal">
+      <div class="card-icon">📄</div>
+      <h2>Resume Optimizer</h2>
+      <p>Paste a job URL, upload your resume, and get a tailored resume + cover letter with keyword gap analysis.</p>
+      <span class="btn-outline">Optimize now →</span>
+    </a>
+
+  </div>
+</section>
+{% endblock %}

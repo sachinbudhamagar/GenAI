@@ -1,0 +1,84 @@
+{% extends "web/base.html" %}
+{% block title %}Job Search — AI Job Agent{% endblock %}
+{% block nav_search %}active{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>🔍 Job Search</h1>
+  <p>Upload your resume and search for jobs — results are ranked by how well they match your skills.</p>
+</div>
+
+<!-- ── Search form ──────────────────────────────────────────────────── -->
+<form method="post" enctype="multipart/form-data" class="card form-card" id="searchForm">
+  {% csrf_token %}
+
+  <div class="form-group">
+    <label for="resume">Resume (PDF)</label>
+    <input type="file" id="resume" name="resume" accept=".pdf" required>
+  </div>
+
+  <div class="form-group">
+    <label for="query">Search Query</label>
+    <input type="text" id="query" name="query" placeholder="e.g. AI engineer in Nepal"
+           value="{{ query|default:'' }}" required>
+  </div>
+
+  <button type="submit" class="btn btn-primary" id="searchBtn">
+    <span class="btn-text">🔎 Search Jobs</span>
+    <span class="btn-loading hidden">⏳ Searching…</span>
+  </button>
+</form>
+
+<!-- ── Errors ───────────────────────────────────────────────────────── -->
+{% if errors %}
+<div class="alert alert-error">
+  {% for err in errors %}<p>⚠️ {{ err }}</p>{% endfor %}
+</div>
+{% endif %}
+
+<!-- ── Top results ──────────────────────────────────────────────────── -->
+{% if top_jobs %}
+<section class="results">
+  <h2>🏆 Top Matching Jobs</h2>
+  <div class="job-list">
+    {% for job in top_jobs %}
+    <article class="job-card">
+      <div class="job-header">
+        <a href="{{ job.Link }}" target="_blank" rel="noopener noreferrer" class="job-title">
+          {{ forloop.counter }}. {{ job.Title }}
+        </a>
+        <span class="score-badge">{{ job.Score }}% match</span>
+      </div>
+      {% if job.Snippet %}
+      <p class="job-snippet">{{ job.Snippet }}</p>
+      {% endif %}
+      <a href="{{ job.Link }}" target="_blank" rel="noopener noreferrer" class="job-link-small">
+        {{ job.Link|truncatechars:60 }} ↗
+      </a>
+    </article>
+    {% endfor %}
+  </div>
+
+  <!-- Other jobs collapsible -->
+  {% if other_jobs %}
+  <details class="other-jobs">
+    <summary>📋 {{ other_jobs|length }} more opportunities</summary>
+    <div class="job-list">
+      {% for job in other_jobs %}
+      <article class="job-card job-card-dim">
+        <div class="job-header">
+          <a href="{{ job.Link }}" target="_blank" rel="noopener noreferrer" class="job-title">
+            {{ job.Title }}
+          </a>
+        </div>
+        {% if job.Snippet %}
+        <p class="job-snippet">{{ job.Snippet }}</p>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </details>
+  {% endif %}
+</section>
+{% endif %}
+{% endblock %}
