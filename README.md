@@ -10,29 +10,10 @@
 
 [![GitHub license](https://img.shields.io/github/license/sachinbudhamagar/GenAI-Document-Agent?style=for-the-badge)](LICENSE) <!-- TODO: Add LICENSE file -->
 
-[![Python Version](https://img.shields.io/badge/python-3.11+-blue.svg?style=for-the-badge)](https://www.python.org/downloads/)
-
-[![Django Version](https://img.shields.io/badge/django-5.0.6-092E20.svg?style=for-the-badge)](https://www.djangoproject.com/)
-
 **AI-powered job search and resume optimiser. Originally built with Streamlit, UI layer replaced with **Django** for a proper request/response web architecture.**
 
 </div>
 
-## 📖 Overview
-
-The GenAI Document Agent is a robust backend service designed to process, analyze, and interact with various document types using advanced Generative AI and vector database technologies. Built on Django and Django REST Framework, it provides a powerful API for integrating intelligent document capabilities into applications.
-
-This project leverages LangChain for orchestration, OpenAI models for generation, and ChromaDB/FAISS for efficient vector storage and retrieval, enabling functionalities like intelligent Q&A over documents, summarization, and content extraction. It's ideal for building applications that require deep understanding and interaction with unstructured document data.
-
-## ✨ Features
-
--   **Intelligent Document Processing:** Ingest and parse various document formats (e.g., PDF) using `unstructured` and `pypdf`.
--   **Generative AI Capabilities:** Interact with documents using large language models (LLMs) via `langchain` and `openai`.
--   **Vector Database Integration:** Utilize `chromadb` and `faiss-cpu` for efficient storage and semantic search of document embeddings.
--   **Scalable API Design:** Built with Django REST Framework for creating robust and performant API endpoints.
--   **API Documentation:** Automatic API schema generation and interactive documentation with `drf-spectacular`.
--   **CORS Management:** Secure and flexible Cross-Origin Resource Sharing (CORS) handling with `djangocorsheaders`.
--   **Modular Project Structure:** Organized for maintainability and extensibility, facilitating easy addition of new features or document types.
 
 ## 🖥️ Screenshots
 
@@ -90,10 +71,6 @@ Follow these steps to get the GenAI Document Agent up and running on your local 
 
 2.  **Install dependencies**
     ```bash
-    pipenv install
-    ```
-    Alternatively, if you prefer `pip`:
-    ```bash
     pip install -r requirements.txt
     ```
 
@@ -106,14 +83,12 @@ Follow these steps to get the GenAI Document Agent up and running on your local 
     ```ini
     # .env
     DEBUG=True
-    SECRET_KEY='django-insecure-YOUR_SECRET_KEY' # Generate a strong secret key for production
-    ALLOWED_HOSTS='*' # Adjust for production environments (e.g., 'localhost,127.0.0.1')
+    SECRET_KEY='django-insecure-YOUR_SECRET_KEY' 
+    ALLOWED_HOSTS='*' 
 
     # OpenAI API Key
     OPENAI_API_KEY='YOUR_OPENAI_API_KEY'
     ```
-    _Note: For security reasons, never commit your actual `SECRET_KEY` or `OPENAI_API_KEY` to version control._
-
 4.  **Database setup**
     Apply Django database migrations. By default, this project uses SQLite.
     ```bash
@@ -125,11 +100,6 @@ Follow these steps to get the GenAI Document Agent up and running on your local 
     pipenv run python manage.py runserver
     ```
     This will start the Django development server on `http://127.0.0.1:8000/`.
-
-6.  **Access the API Documentation**
-    Once the server is running, open your browser and visit:
-    -   `http://127.0.0.1:8000/api/schema/swagger-ui/` for Swagger UI.
-    -   `http://127.0.0.1:8000/api/schema/redoc/` for ReDoc.
 
 ## 📁 Project Structure
 
@@ -202,21 +172,6 @@ GenAI-Document-Agent/
 | `DJANGO_DEBUG` | `True` | Set to `False` in production |
 | `DJANGO_ALLOWED_HOSTS` | `localhost 127.0.0.1` | Space-separated |
 
-## 🧪 Testing
-
-The project uses `pytest` and `pytest-django` for testing. Test files are located in the `tests/` directory.
-
-To run all tests:
-```bash
-pipenv run pytest
-```
-
-To run tests with coverage (if `coverage` is installed via `requirements-dev.txt`):
-```bash
-pipenv run pytest --cov=<app_name>
-```
-Replace `<app_name>` with the name of your Django app (e.g., `src` or `core`).
-
 ## 🚀 Deployment
 
 ### Production Build
@@ -240,6 +195,7 @@ While Django does not have a "build" step like frontend applications, preparing 
 A `Dockerfile` is used for containerization.
 **Build**
 ```bash
+Build
     docker-compose build
 
 Run 
@@ -271,7 +227,7 @@ This project is licensed under the [MIT](LICENSE) - see the LICENSE file for det
 
 ## 📞 Support & Contact
 
--   📧 Email: [sachinbudhamagar@example.com] <!-- TODO: Add actual contact email -->
+-   📧 Email: [sachinbmagar19@gmail.com]
 -   🐛 Issues: [GitHub Issues](https://github.com/sachinbudhamagar/GenAI-Document-Agent/issues)
 
 ---
