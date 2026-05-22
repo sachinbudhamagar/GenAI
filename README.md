@@ -204,27 +204,6 @@ GenAI-Document-Agent/
 | `DJANGO_DEBUG` | `True` | Set to `False` in production |
 | `DJANGO_ALLOWED_HOSTS` | `localhost 127.0.0.1` | Space-separated |
 
-## 🔧 Development
-
-### Available Scripts
-The `manage.py` script provides various commands:
-
-| Command                            | Description                                          |
-
-|------------------------------------|------------------------------------------------------|
-
-| `pipenv run python manage.py runserver` | Starts the Django development server.                |
-
-| `pipenv run python manage.py migrate`   | Applies database migrations.                         |
-
-| `pipenv run python manage.py makemigrations` | Creates new migrations based on model changes.       |
-
-| `pipenv run python manage.py createsuperuser` | Creates an admin user for the Django admin panel.    |
-
-| `pipenv run pytest`                | Runs all detected tests using `pytest`.              |
-
-| `pipenv run pytest <app_name>/tests` | Runs tests for a specific Django app.                |
-
 ## 🧪 Testing
 
 The project uses `pytest` and `pytest-django` for testing. Test files are located in the `tests/` directory.
@@ -274,22 +253,6 @@ Stop
 
 ### Authentication
 Currently, the API likely uses token-based authentication (Django REST Framework's default or custom). Consult `core/settings.py` and API views for specific authentication classes.
-
-### Endpoints
-The following are examples of potential API endpoints. Refer to the Swagger/ReDoc UI for exact details.
-
-| Method | Endpoint                        | Description                                     | Request Body |
-
-|--------|---------------------------------|-------------------------------------------------|--------------|
-
-| `POST` | `/api/documents/upload/`        | Upload a document for processing.               | `multipart/form-data` (file) |
-
-| `POST` | `/api/documents/<id>/query/`    | Query an uploaded document with a question.     | `{ "query": "string" }` |
-
-| `GET`  | `/api/documents/<id>/`          | Retrieve details about a processed document.    | -            |
-
-| `GET`  | `/api/documents/`               | List all processed documents.                   | -            |
-
 
 ### Development Setup for Contributors
 -   Ensure you have Python 3.11+ and `pipenv` installed.
