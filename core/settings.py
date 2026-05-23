@@ -15,6 +15,8 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "django-insecure-change-me-in-produc
 DEBUG = os.getenv("DJANGO_DEBUG", "True") == "True"
 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "localhost 127.0.0.1").split(",")
+if os.getenv('RENDER'):
+    ALLOWED_HOSTS.append('.onrender.com')
 ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
