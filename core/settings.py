@@ -63,8 +63,9 @@ TIME_ZONE = "UTC"
 USE_TZ = True
 
 # Sessions — file-based so no database is needed
-SESSION_ENGINE = "django.contrib.sessions.backends.file"
-SESSION_FILE_PATH = BASE_DIR / ".session_store"
+#SESSION_ENGINE = "django.contrib.sessions.backends.file"
+#SESSION_FILE_PATH = BASE_DIR / ".session_store"
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 SESSION_COOKIE_AGE = 3600  # 1 hour
 SESSION_SAVE_EVERY_REQUEST = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
